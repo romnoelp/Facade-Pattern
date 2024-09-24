@@ -1,49 +1,17 @@
-# Simplified Intelligent Home System
+Simplified Intelligent Home System
 
-## Overview
+The HomeApp needs to manage various home services for an intelligent home system. These services include turning on and off the lights, TV, and air conditioning. However, the HomeApp aims to interact with these services through a simplified, single interface provided by the HomeInterface. The HomeInterface class should delegate the user’s requests to the appropriate service classes (Light, TV, AirConditioning) while abstracting the service details from the user. Additionally, the HomeInterface should provide methods to turn on all services (turnOnAll()) and turn off all services (turnOffAll()).
 
-This project implements a simplified intelligent home system that allows users to manage various home services like lights, TV, and air conditioning through a unified interface. The design employs the facade pattern to abstract the complexities of each service, providing a seamless user experience.
+Class Definitions:
 
-## Features
+HomeService (Interface): Defines the common interface for all home services.
 
-- Control lights, TV, and air conditioning from a single interface.
-- Easily turn on or off all services at once.
-- Simple and intuitive class structure.
+Light: A service class implementing the HomeService interface, responsible for turning the lights on and off. It includes the turnOn() and turnOff() methods.
 
-## Class Definitions
+TV: A service class implementing the HomeService interface, responsible for turning the TV on and off. It includes the turnOn() and turnOff() methods.
 
-### 1. HomeService (Interface)
-Defines the common interface for all home services.
+AirConditioning: A service class implementing the HomeService interface, responsible for turning the air conditioning on and off. It includes the turnOn() and turnOff() methods.
 
-### 2. Light
-Implements the `HomeService` interface for managing lights.
+HomeInterface: The facade class that coordinates interactions between the client (HomeApp) and the individual home services. It includes the turnOnAll() and turnOffAll() methods to control all services simultaneously.
 
-### 3. TV
-Implements the `HomeService` interface for managing the TV.
-
-### 4. AirConditioning
-Implements the `HomeService` interface for managing air conditioning.
-
-### 5. HomeInterface
-The facade class that coordinates interactions between the `HomeApp` and individual home services.
-
-### 6. HomeApp
-The client class that uses the `HomeInterface` to access and utilize home services seamlessly.
-
-## Usage
-
-To run the application, simply execute the `HomeApp` class. It will demonstrate turning on and off all services.
-
-```java
-public class HomeApp {
-    public static void main(String[] args) {
-        TV tv = new TV();
-        AirConditioning airConditioning = new AirConditioning();
-        Light light = new Light(); // Create Light service instance
-        HomeInterface homeInterface = new HomeInterface(tv, airConditioning, light);
-
-        homeInterface.turnOnAll();
-        System.out.println("-----------------------------");
-        homeInterface.turnOffAll();
-    }
-}
+HomeApp: The client class that uses the HomeInterface to access and utilize home services seamlessly.
